@@ -33,20 +33,20 @@ class VariationalDropoutModel(nn.Module):
                     result = F.elu(result)
                     kld =kld + kld1
 
-            return self.fc[-1](result), kld
+            return F.softmax(self.fc[-1](result)), kld
 
         for i, layer in enumerate(self.fc):
             if i != len(self.fc) - 1:
                 result = F.elu(layer(result, train))
 
-        return self.fc[-1](result)
+        return F.softmax(self.fc[-1](result))
 
     def loss(self, **kwargs):
         if kwargs['train']:
             input1=kwargs['input']
             out, kld = self(input1, train=kwargs['train'])
-            print('kld loss {}'.format(kld.data))
-            print('corss entropy loss {}'.format(F.cross_entropy(out, kwargs['target']).data))
+            #print('kld loss {}'.format(kld.data))
+            #print('corss entropy loss {}'.format(F.cross_entropy(out, kwargs['target']).data))
             return F.cross_entropy(out, kwargs['target'], size_average=kwargs['average']), kld
 
         out = self(kwargs['input'], kwargs['train'])

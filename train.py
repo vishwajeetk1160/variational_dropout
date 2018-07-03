@@ -12,19 +12,19 @@ from models import *
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description='train')
-    parser.add_argument('--num-epochs', type=int, default=6, metavar='NI',
+    parser.add_argument('--num-epochs', type=int, default=15, metavar='NI',
                         help='num epochs (default: 10)')
-    parser.add_argument('--batch-size', type=int, default=70, metavar='BS',
+    parser.add_argument('--batch-size', type=int, default=100, metavar='BS',
                         help='batch size (default: 70)')
     parser.add_argument('--use-cuda', type=bool, default=False, metavar='CUDA',
                         help='use cuda (default: False)')
-    parser.add_argument('--learning-rate', type=float, default=0.0005, metavar='LR',
+    parser.add_argument('--learning-rate', type=float, default=0.00005, metavar='LR',
                         help='learning rate (default: 0.0005)')
     parser.add_argument('--mode', type=str, default='vardropout', metavar='M',
                         help='training mode (default: simple)')
     args = parser.parse_args()
 
-    writer = SummaryWriter(args.mode)
+    #writer = SummaryWriter(args.mode)
 
     assert args.mode in ['simple', 'dropout', 'vardropout'], 'Invalid mode, should be in [simple, dropout, vardropout]'
     Model = {
@@ -57,8 +57,8 @@ if __name__ == "__main__":
 
     cross_enropy_averaged = nn.CrossEntropyLoss(size_average=True)
     for epoch in range(args.num_epochs):
+        flag_1=0
         for iteration, (input, target) in enumerate(train_dataloader):
-
             input = Variable(input).view(-1, 784)
             target = Variable(target)
 
@@ -75,8 +75,11 @@ if __name__ == "__main__":
             else:
                 likelihood, kld = model.loss(input=input, target=target, train=True, average=True)
                 #coef = min(epoch / 40., 1.) #making this ceff. 1. understand this coeff.
-                coef=1. 
-                loss = likelihood + kld * coef
+                coef=100. 
+
+                loss = likelihood+coef* kld
+                #print (loss.data.numpy()[0])
+                #print (epoch)
 
             loss.backward()
             optimizer.step()
@@ -101,13 +104,9 @@ if __name__ == "__main__":
                         loss += model.loss(input=input, target=target, train=False, average=False).cpu().data.numpy()[0]
 
                 loss = loss / (args.batch_size * len(test_dataloader))
-                print('_____________')
-                print('valid epoch {}, iteration {}'.format(epoch, iteration))
-                print('_____________')
-                print(loss)
-                print('_____________')
-                writer.add_scalar('data/loss', loss, epoch * len(train_dataloader) + iteration)
+                print('validation epoch {}, iteration {}, loss {}'.format(epoch, iteration, loss))
+                #writer.add_scalar('data/loss', loss, epoch * len(train_dataloader) + iteration)
 
-    writer.close()
+    #writer.close()
     t.save(model.state_dict(), 'trail_model.pth.tar')
 

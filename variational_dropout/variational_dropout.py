@@ -56,15 +56,10 @@ class VariationalDropout(nn.Module):
         :param input: An float tensor with shape of [batch_size, input_size]
         :return: An float tensor with shape of [batch_size, out_size] and negative layer-kld estimation
         """
-        #print("gfshghdflg")
         log_alpha = self.clip(self.log_sigma2 - t.log(self.theta ** 2))
-        #print((self.log_sigma2 - t.log(self.theta ** 2)).mean())
-        print(self.max_alpha())
-        fh=open("log_alpha_values_during_training.txt", 'a')
-        fh.write(str(self.input_size)+"-----"+str(log_alpha.data.numpy().mean())+"-----"+str(self.out_size)+"\n")
-        fh.close()
-        #print((self.log_sigma2 - t.log(self.theta ** 2)).mean())
-        #print(type(log_alpha))
+        #fh=open("log_alpha_values_during_training.txt", 'a')
+        #fh.write(str(self.input_size)+"-----"+str(log_alpha.data.numpy().mean())+"-----"+str(self.out_size)+"\n")
+        #fh.close()
         kld = self.kld(log_alpha)
 
         if not train:
