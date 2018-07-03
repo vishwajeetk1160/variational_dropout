@@ -1,5 +1,4 @@
 import math
-
 import torch as t
 import torch.nn as nn
 import torch.nn.functional as F
@@ -49,7 +48,8 @@ class VariationalDropout(nn.Module):
 
         first_term = self.k[0] * F.sigmoid(self.k[1] + self.k[2] * log_alpha)
         second_term = 0.5 * t.log(1 + t.exp(-log_alpha))
-        return -(first_term - second_term - self.k[0]).sum() / (self.input_size * self.out_size)
+        return (first_term - second_term - self.k[0]).sum() / (self.input_size * self.out_size)
+
 
     def forward(self, input, train):
         """

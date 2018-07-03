@@ -12,7 +12,7 @@ from models import *
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description='train')
-    parser.add_argument('--num-epochs', type=int, default=15, metavar='NI',
+    parser.add_argument('--num-epochs', type=int, default=30, metavar='NI',
                         help='num epochs (default: 10)')
     parser.add_argument('--batch-size', type=int, default=100, metavar='BS',
                         help='batch size (default: 70)')
@@ -48,6 +48,7 @@ if __name__ == "__main__":
                              train=False)
     test_dataloader = t.utils.data.DataLoader(dataset, batch_size=args.batch_size, shuffle=True, drop_last=True)
 
+
     model = Model()
     if args.use_cuda:
         model.cuda()
@@ -57,10 +58,10 @@ if __name__ == "__main__":
 
     cross_enropy_averaged = nn.CrossEntropyLoss(size_average=True)
     for epoch in range(args.num_epochs):
-        flag_1=0
         for iteration, (input, target) in enumerate(train_dataloader):
             input = Variable(input).view(-1, 784)
             target = Variable(target)
+            
 
             if args.use_cuda:
                 input, target = input.cuda(), target.cuda()
@@ -73,11 +74,11 @@ if __name__ == "__main__":
             elif args.mode == 'dropout':
                 loss = model.loss(input=input, target=target, p=0.4, average=True)
             else:
-                likelihood, kld = model.loss(input=input, target=target, train=True, average=True)
+                likelihood, kld, kd_loss_value = model.loss(input=input, target=target, train=True, average=True)
                 #coef = min(epoch / 40., 1.) #making this ceff. 1. understand this coeff.
                 coef=100. 
 
-                loss = likelihood+coef* kld
+                loss = likelihood+coef* kld+ kd_loss_value
                 #print (loss.data.numpy()[0])
                 #print (epoch)
 
