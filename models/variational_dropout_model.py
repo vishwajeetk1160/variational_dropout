@@ -1,7 +1,6 @@
 import torch.nn as nn
 import torch.nn.functional as F
 import torch as t
-
 from variational_dropout.variational_dropout import VariationalDropout
 
 class teacherNet(nn.Module):
@@ -37,7 +36,6 @@ class VariationalDropoutModel(nn.Module):
         :return: An float tensor with shape of [batch_size, 10]
                  filled with logits of likelihood and kld estimation
         """
-
         result = input
 
         if train:
@@ -49,30 +47,30 @@ class VariationalDropoutModel(nn.Module):
                     result = F.elu(result)
                     kld =kld + kld1
 
-            return F.softmax(self.fc[-1](result)), kld
+            return self.fc[-1](result), kld
 
         for i, layer in enumerate(self.fc):
             if i != len(self.fc) - 1:
                 result = F.elu(layer(result, train))
 
-        return F.softmax(self.fc[-1](result))
+        return self.fc[-1](result)
 
     def loss(self, **kwargs):
         if kwargs['train']:
             input1=kwargs['input']
             out, kld = self(input1, train=kwargs['train'])
             teacher_model = teacherNet()
-            teacher_model.load_state_dict(t.load('teacher_MLP_epch_30.pth.tar'))
+            teacher_model.load_state_dict(t.load('teacher_MLP.pth.tar'))
             teacher_output=teacher_model(input1)
             #teacher_output= teacher_output.detach()
-            kd_loss_value=kd_loss(out, teacher_output,2.)
+            kd_loss_value=self.mse_loss(out, teacher_output)
 
             return F.cross_entropy(out, kwargs['target'], size_average=kwargs['average']), kld, kd_loss_value
 
         out = self(kwargs['input'], kwargs['train'])
         return F.cross_entropy(out, kwargs['target'], size_average=kwargs['average'])
 
-    def kd_loss(self, y, teacher_scores, T):
-        return nn.KLDivLoss()(F.log_softmax(y/T), F.softmax(teacher_scores/T)) * (T*T * 2.0)
+    def mse_loss(self, input, target):
+        return t.sum((input - target)**2) / input.data.nelement()
 
 
