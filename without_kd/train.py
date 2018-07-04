@@ -1,3 +1,4 @@
+#without_KD
 import argparse
 import torch as t
 import torch.nn as nn
@@ -111,6 +112,7 @@ if __name__ == "__main__":
                 print('validation epoch {}, iteration {}, loss {}'.format(epoch, iteration, loss))
                 fh.write('validation epoch {}, iteration {}, loss {}'.format(epoch, iteration, loss))
                 fh.write("\n")
+    t.save(model.state_dict(), 'trained_model.pth.tar')
 
 
 fh.close()
