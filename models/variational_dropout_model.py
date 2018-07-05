@@ -24,9 +24,9 @@ class VariationalDropoutModel(nn.Module):
         super(VariationalDropoutModel, self).__init__()
 
         self.fc = nn.ModuleList([
-            VariationalDropout(784, 400),
-            VariationalDropout(400, 40),
-            nn.Linear(40, 10)
+            VariationalDropout(784, 600),
+            VariationalDropout(600, 600),
+            nn.Linear(600, 10)
         ])
 
     def forward(self, input, train=False):
@@ -60,7 +60,7 @@ class VariationalDropoutModel(nn.Module):
             input1=kwargs['input']
             out, kld = self(input1, train=kwargs['train'])
             teacher_model = teacherNet()
-            teacher_model.load_state_dict(t.load('teacher_MLP.pth.tar'))
+            teacher_model.load_state_dict(t.load('teacher_MLP_jittered_SGD.pth.tar'))
             teacher_output=teacher_model(input1)
             #teacher_output= teacher_output.detach()
             kd_loss_value=self.mse_loss(out, teacher_output)

@@ -1,3 +1,4 @@
+#teacher jittered model dimension and forwards stored
 from __future__ import print_function
 import argparse
 import torch
@@ -11,17 +12,16 @@ import os
 import time
 import random
 start_time = time.time()
-
 #epochs=50
 # Training settings
 parser = argparse.ArgumentParser(description='PyTorch MNIST Example')
-parser.add_argument('--batch-size', type=int, default=128, metavar='N',
+parser.add_argument('--batch-size', type=int, default=100, metavar='N',
                     help='input batch size for training (default: 64)')
 parser.add_argument('--test-batch-size', type=int, default=1000, metavar='N',
                     help='input batch size for testing (default: 1000)')
-parser.add_argument('--epochs', type=int, default=30, metavar='N',
+parser.add_argument('--epochs', type=int, default=50, metavar='N',
                     help='number of epochs to train (default: 10)')
-parser.add_argument('--lr', type=float, default=0.09, metavar='LR',
+parser.add_argument('--lr', type=float, default=0.001, metavar='LR',
                     help='learning rate (default: 0.01)')
 parser.add_argument('--momentum', type=float, default=0.9, metavar='M',
                     help='SGD momentum (default: 0.5)')
@@ -34,31 +34,11 @@ parser.add_argument('--log-interval', type=int, default=10, metavar='N',
 args = parser.parse_args()
 args.cuda = not args.no_cuda and torch.cuda.is_available()
 
-
-
 torch.manual_seed(args.seed)
 if args.cuda:
     torch.cuda.manual_seed(args.seed)
 
-
 kwargs = {'num_workers': 1, 'pin_memory': True} if args.cuda else {}
-
-
-train_loader = torch.utils.data.DataLoader(
-    datasets.MNIST('./data', train=True, download=True,
-                   transform=transforms.Compose([
-                       transforms.ToTensor(),
-                       transforms.Normalize((0.1307,), (0.3081,))
-                   ])),
-    batch_size=128, shuffle=True)
-    
-test_loader = torch.utils.data.DataLoader(
-    datasets.MNIST('./data', train=False, transform=transforms.Compose([
-                       transforms.ToTensor(),
-                       transforms.Normalize((0.1307,), (0.3081,))
-                   ])),
-    batch_size=1000, shuffle=True)
-
 
 def jitter(data_tensor):
     for i in range(1, len(data_tensor[0]-1)):
@@ -91,18 +71,15 @@ def jitter(data_tensor):
                 data_tensor[0][i+1][j+1]=var_1
 
 
-data_train = MNIST('~/data', train=True, download=True, transform=transforms.Compose([transforms.ToTensor(), transforms.Normalize((0.1307,),(0.3081,))]))
-data_test = MNIST ('~/data', train=False, download=True, transform=transforms.Compose([transforms.ToTensor(), transforms.Normalize((0.1307,),(0.3081,))]))
+data_train = MNIST(root='data/', train=True, download=True, transform=transforms.Compose([transforms.ToTensor()]))
+data_test = MNIST (root='data/', train=False, download=True, transform=transforms.Compose([transforms.ToTensor()]))
 
-print(type(data_train[1]))
 for i in range(len(data_train)):
     jitter(data_train[i])
 
 
-
 train_loader = torch.utils.data.DataLoader(dataset = data_train, batch_size = args.batch_size, shuffle = True)
 test_loader = torch.utils.data.DataLoader(dataset= data_test, batch_size = args.test_batch_size, shuffle= True)
-
 
 class Net(nn.Module):
     def __init__(self):
@@ -124,7 +101,7 @@ model = Net()
 if args.cuda:
     model.cuda()
 
-optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
+optimizer = optim.Adam(model.parameters(), lr=args.lr,eps=1e-8,
                       weight_decay=5e-4)
 
 def train(epoch, model):
@@ -161,7 +138,6 @@ def train_evaluate(model):
         train_loss, correct, len(train_loader.dataset),
         100. * correct / len(train_loader.dataset)))
 
-
 def test(model):
     model.eval()
     test_loss = 0
@@ -179,15 +155,11 @@ def test(model):
     print('\nTest set: Average loss: {:.4f}, Accuracy: {}/{} ({:.0f}%)\n'.format(
         test_loss, correct, len(test_loader.dataset),
         100. * correct / len(test_loader.dataset)))
-
-
+    
 for epoch in range(1, args.epochs + 1):
     train(epoch, model)
     train_evaluate(model)
     test(model)
 
-torch.save(model.state_dict(), 'teacher_MLP_jittered.pth.tar')
-
+torch.save(model.state_dict(), 'teacher_MLP_jittered_Adam.pth.tar')
 print("--- %s seconds ---" % (time.time() - start_time))
-
-
