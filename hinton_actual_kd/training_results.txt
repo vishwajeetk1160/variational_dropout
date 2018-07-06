@@ -1,0 +1,194 @@
+
+
+
+batch_size 100, epochs 10, learning rate 0.0005, coeff kld 1.0, coeff kd0.05
+train epoch 0, iteration 0, loss -0.51619952917099
+validation epoch 0, iteration 0, loss 2.2262548126220705
+
+
+
+batch_size 100, epochs 10, learning rate 0.0005, coeff kld 1.0, coeff kd0.05
+train epoch 0, iteration 0, loss -0.5329049229621887
+validation epoch 0, iteration 0, loss nan
+
+
+
+batch_size 100, epochs 10, learning rate 0.0005, coeff kld 1.0, coeff kd0.05
+train epoch 0, iteration 0, loss -0.538110613822937
+validation epoch 0, iteration 0, loss 2.2049367095947265
+
+
+
+batch_size 100, epochs 10, learning rate 0.0005, coeff kld 1.0, coeff kd0.05
+train epoch 0, iteration 0, loss -0.531939685344696
+validation epoch 0, iteration 0, loss 2.2182871292114257
+train epoch 0, iteration 300, loss -5.170444488525391
+validation epoch 0, iteration 300, loss 0.27737014904022217
+train epoch 1, iteration 0, loss -5.775320053100586
+validation epoch 1, iteration 0, loss 0.18101034421920775
+train epoch 1, iteration 300, loss -6.513603210449219
+validation epoch 1, iteration 300, loss 0.13796307287216186
+train epoch 2, iteration 0, loss -6.890944004058838
+validation epoch 2, iteration 0, loss 0.11867947509288788
+train epoch 2, iteration 300, loss -7.128087043762207
+validation epoch 2, iteration 300, loss 0.10652606906890869
+train epoch 3, iteration 0, loss -7.48325777053833
+validation epoch 3, iteration 0, loss 0.09150362588167191
+train epoch 3, iteration 300, loss -7.680166721343994
+validation epoch 3, iteration 300, loss 0.09061734371185302
+train epoch 4, iteration 0, loss -7.910861492156982
+validation epoch 4, iteration 0, loss 0.08029103090763091
+train epoch 4, iteration 300, loss -8.112136840820312
+validation epoch 4, iteration 300, loss 0.08454768998622894
+train epoch 5, iteration 0, loss -8.29643440246582
+validation epoch 5, iteration 0, loss 0.08067091143131257
+train epoch 5, iteration 300, loss -8.422484397888184
+validation epoch 5, iteration 300, loss 0.07815412130951882
+train epoch 6, iteration 0, loss -8.59390640258789
+validation epoch 6, iteration 0, loss 0.08095970247983933
+train epoch 6, iteration 300, loss -8.687973022460938
+validation epoch 6, iteration 300, loss 0.0737051374912262
+train epoch 7, iteration 0, loss -8.830194473266602
+validation epoch 7, iteration 0, loss 0.07950697778463364
+train epoch 7, iteration 300, loss -8.915881156921387
+validation epoch 7, iteration 300, loss 0.07158119290471077
+train epoch 8, iteration 0, loss -8.975069046020508
+validation epoch 8, iteration 0, loss 0.07888382553458213
+train epoch 8, iteration 300, loss -9.02868366241455
+validation epoch 8, iteration 300, loss 0.07808825173377991
+train epoch 9, iteration 0, loss -9.06346607208252
+validation epoch 9, iteration 0, loss 0.08638812068104744
+train epoch 9, iteration 300, loss -9.109920501708984
+validation epoch 9, iteration 300, loss 0.07339921653866768
+
+
+
+batch_size 100, epochs 10, learning rate 0.0005, coeff kld 0.5, coeff kd0.05
+train epoch 0, iteration 0, loss 0.9348059296607971
+validation epoch 0, iteration 0, loss 2.225144091796875
+train epoch 0, iteration 300, loss -2.0993943214416504
+validation epoch 0, iteration 300, loss 0.27198568439483645
+train epoch 1, iteration 0, loss -2.585343360900879
+validation epoch 1, iteration 0, loss 0.18465313453674317
+train epoch 1, iteration 300, loss -2.933218002319336
+validation epoch 1, iteration 300, loss 0.1429334129333496
+train epoch 2, iteration 0, loss -3.070030689239502
+validation epoch 2, iteration 0, loss 0.1312072427034378
+train epoch 2, iteration 300, loss -3.216020107269287
+validation epoch 2, iteration 300, loss 0.10155150144100189
+train epoch 3, iteration 0, loss -3.288442850112915
+validation epoch 3, iteration 0, loss 0.10717499361038207
+train epoch 3, iteration 300, loss -3.493093252182007
+validation epoch 3, iteration 300, loss 0.09044801387786865
+train epoch 4, iteration 0, loss -3.574599504470825
+validation epoch 4, iteration 0, loss 0.08707438670396805
+train epoch 4, iteration 300, loss -3.679051637649536
+validation epoch 4, iteration 300, loss 0.08605459818840026
+train epoch 5, iteration 0, loss -3.7624804973602295
+validation epoch 5, iteration 0, loss 0.07751912622451783
+train epoch 5, iteration 300, loss -3.7783329486846924
+validation epoch 5, iteration 300, loss 0.0714882672548294
+train epoch 6, iteration 0, loss -3.9174184799194336
+validation epoch 6, iteration 0, loss 0.06871681212186813
+train epoch 6, iteration 300, loss -3.9702978134155273
+validation epoch 6, iteration 300, loss 0.06819887409806251
+train epoch 7, iteration 0, loss -4.02868127822876
+validation epoch 7, iteration 0, loss 0.07671594276428223
+train epoch 7, iteration 300, loss -4.078768253326416
+validation epoch 7, iteration 300, loss 0.07072518516182899
+train epoch 8, iteration 0, loss -4.145345687866211
+validation epoch 8, iteration 0, loss 0.07439684440493584
+train epoch 8, iteration 300, loss -4.2025909423828125
+validation epoch 8, iteration 300, loss 0.06672161588668823
+train epoch 9, iteration 0, loss -4.261786937713623
+validation epoch 9, iteration 0, loss 0.06989542340040207
+train epoch 9, iteration 300, loss -4.30580997467041
+validation epoch 9, iteration 300, loss 0.06383433704376221
+
+
+
+batch_size 100, epochs 10, learning rate 0.0005, coeff kld 0.3, coeff kd0.05
+train epoch 0, iteration 0, loss 1.5127514600753784
+validation epoch 0, iteration 0, loss 2.2124760650634765
+train epoch 0, iteration 300, loss -1.0726162195205688
+validation epoch 0, iteration 300, loss 0.26107598400115967
+train epoch 1, iteration 0, loss -1.4384827613830566
+validation epoch 1, iteration 0, loss 0.18600499200820922
+train epoch 1, iteration 300, loss -1.5371723175048828
+validation epoch 1, iteration 300, loss 0.1472135040283203
+train epoch 2, iteration 0, loss -1.7269327640533447
+validation epoch 2, iteration 0, loss 0.13195597615242005
+train epoch 2, iteration 300, loss -1.6896255016326904
+validation epoch 2, iteration 300, loss 0.11043942079544067
+train epoch 3, iteration 0, loss -1.7797703742980957
+validation epoch 3, iteration 0, loss 0.1029859209060669
+train epoch 3, iteration 300, loss -1.8464124202728271
+validation epoch 3, iteration 300, loss 0.09396923668384552
+train epoch 4, iteration 0, loss -1.903458595275879
+validation epoch 4, iteration 0, loss 0.09470127930641174
+train epoch 4, iteration 300, loss -1.973802089691162
+validation epoch 4, iteration 300, loss 0.08643524965047836
+train epoch 5, iteration 0, loss -2.0873045921325684
+validation epoch 5, iteration 0, loss 0.08640561392307282
+train epoch 5, iteration 300, loss -2.10749888420105
+validation epoch 5, iteration 300, loss 0.08076286725401878
+train epoch 6, iteration 0, loss -2.130941867828369
+validation epoch 6, iteration 0, loss 0.0739602299451828
+train epoch 6, iteration 300, loss -2.1998958587646484
+validation epoch 6, iteration 300, loss 0.07453854946494103
+train epoch 7, iteration 0, loss -2.2516629695892334
+validation epoch 7, iteration 0, loss 0.0729179120540619
+train epoch 7, iteration 300, loss -2.278010606765747
+validation epoch 7, iteration 300, loss 0.07348028215765953
+train epoch 8, iteration 0, loss -2.2920565605163574
+validation epoch 8, iteration 0, loss 0.06777676707804203
+train epoch 8, iteration 300, loss -2.313628673553467
+validation epoch 8, iteration 300, loss 0.0678240283548832
+train epoch 9, iteration 0, loss -2.3593666553497314
+validation epoch 9, iteration 0, loss 0.0671224656522274
+train epoch 9, iteration 300, loss -2.3814167976379395
+validation epoch 9, iteration 300, loss 0.06319372108578682
+
+
+
+batch_size 100, epochs 10, learning rate 0.0005, coeff kld 0.7, coeff kd0.05
+train epoch 0, iteration 0, loss 0.33695441484451294
+validation epoch 0, iteration 0, loss 2.2210468643188475
+train epoch 0, iteration 300, loss -3.42673659324646
+validation epoch 0, iteration 300, loss 0.26182738676071166
+train epoch 1, iteration 0, loss -3.9311938285827637
+validation epoch 1, iteration 0, loss 0.1868861839532852
+train epoch 1, iteration 300, loss -4.328841686248779
+validation epoch 1, iteration 300, loss 0.14458019127845764
+train epoch 2, iteration 0, loss -4.578945159912109
+validation epoch 2, iteration 0, loss 0.11979198806285858
+train epoch 2, iteration 300, loss -4.821194171905518
+validation epoch 2, iteration 300, loss 0.11077695224285125
+train epoch 3, iteration 0, loss -5.014166831970215
+validation epoch 3, iteration 0, loss 0.10116268901824951
+train epoch 3, iteration 300, loss -5.113495826721191
+validation epoch 3, iteration 300, loss 0.0938571697473526
+train epoch 4, iteration 0, loss -5.2889404296875
+validation epoch 4, iteration 0, loss 0.08525931948423386
+train epoch 4, iteration 300, loss -5.387457847595215
+validation epoch 4, iteration 300, loss 0.07677612724304199
+train epoch 5, iteration 0, loss -5.5356221199035645
+validation epoch 5, iteration 0, loss 0.07616253724098206
+train epoch 5, iteration 300, loss -5.634654521942139
+validation epoch 5, iteration 300, loss 0.071896048527956
+train epoch 6, iteration 0, loss -5.729445934295654
+validation epoch 6, iteration 0, loss 0.07190449150800705
+train epoch 6, iteration 300, loss -5.843603134155273
+validation epoch 6, iteration 300, loss 0.07209235738515854
+train epoch 7, iteration 0, loss -5.915913105010986
+validation epoch 7, iteration 0, loss 0.07949845472574234
+train epoch 7, iteration 300, loss -5.968347549438477
+validation epoch 7, iteration 300, loss 0.08223036686778068
+train epoch 8, iteration 0, loss -6.078983306884766
+validation epoch 8, iteration 0, loss 0.08081630524992943
+train epoch 8, iteration 300, loss -6.130548000335693
+validation epoch 8, iteration 300, loss 0.07398122466206551
+train epoch 9, iteration 0, loss -6.181600570678711
+validation epoch 9, iteration 0, loss 0.07488673067092895
+train epoch 9, iteration 300, loss -6.230290412902832
+validation epoch 9, iteration 300, loss 0.07437264875769616

@@ -60,7 +60,7 @@ class VariationalDropoutModel(nn.Module):
             input1=kwargs['input']
             out, kld = self(input1, train=kwargs['train'])
             teacher_model = teacherNet()
-            teacher_model.load_state_dict(t.load('teacher_MLP_jittered_SGD.pth.tar'))
+            teacher_model.load_state_dict(t.load('teacher_MLP_jittered_Adam_try_2.pth.tar'))
             teacher_output=teacher_model(input1)
             #teacher_output= teacher_output.detach()
             kd_loss_value=self.mse_loss(out, teacher_output)

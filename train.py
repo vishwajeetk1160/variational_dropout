@@ -100,7 +100,7 @@ if __name__ == "__main__":
             	fh.write('train epoch {}, iteration {}, loss {}'.format(epoch, iteration, loss.cpu().data.numpy()[0]))
             	fh.write('\n')
 
-            if (iteration % 599) == 0:
+            if (iteration % 300) == 0:
                 loss = 0
                 for input, target in test_dataloader:
                     input = Variable(input).view(-1, 784)
@@ -121,7 +121,7 @@ if __name__ == "__main__":
                 fh.write('validation epoch {}, iteration {}, loss {}'.format(epoch, iteration, loss))
                 fh.write('\n')
                 
-    t.save(model.state_dict(), 'trained_model.pth.tar')
+    t.save(model.state_dict(), 'trained_model_NewJittered_275.pth.tar')
     plt.figure(1)
     plt.plot(train_loss_list)
     plt.show()

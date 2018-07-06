@@ -65,6 +65,16 @@ class VariationalDropout(nn.Module):
 
         if not train:
             mask = log_alpha > self.threshold
+            if (t.nonzero(mask).dim()!= 0):
+                zeroed_weights=t.nonzero(mask).size(0)
+                
+            else :
+                zeroed_weights=0
+                
+            total_weights=mask.size(0)*mask.size(1)
+            print('number of zeroed weights is {}'.format(zeroed_weights))
+            print ('total numer of weights is {}'.format(total_weights))
+            print ('ratio for non zeroed weights is {}'.format( (total_weights - zeroed_weights)/total_weights) )
             return t.addmm(self.bias, input, self.theta.masked_fill(mask, 0))
 
         mu = t.mm(input, self.theta)

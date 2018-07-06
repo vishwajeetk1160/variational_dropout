@@ -51,7 +51,7 @@ if __name__ == "__main__":
     if args.use_cuda:
         model.cuda()
 
-    model.load_state_dict(t.load('trained_model.pth.tar'))
+    model.load_state_dict(t.load('trained_model_NewJittered_275.pth.tar'))
     test_error=[]
 
     def test(model):
